@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LoadSirBestPractice</string>
+    <string name="fine_no_data">fine, no data.</string>
+    <string name="click_me_to_retry">click me to retry!</string>
+</resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="font_red_12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="font_red_20">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="font_red_16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="font_3_12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/font_3</item>
+    </style>
+
+    <style name="font_9_12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/font_9</item>
+    </style>
+
+    <style name="font_9_14">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/font_9</item>
+    </style>
+
+    <style name="font_9_16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/font_9</item>
+    </style>
+
+    <style name="font_c_16">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/c</item>
+    </style>
+
+    <style name="font_9_15">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/font_9</item>
+    </style>
+
+    <style name="font_6_12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/font_6</item>
+    </style>
+
+    <style name="font_6_15">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/font_6</item>
+    </style>
+
+    <style name="font_f_15">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="font_f_12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="font_f_20">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="font_f_18">
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <style name="font_2_15">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@color/font_2</item>
+    </style>
+</resources>
