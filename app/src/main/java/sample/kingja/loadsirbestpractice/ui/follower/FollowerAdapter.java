@@ -1,4 +1,4 @@
-package sample.kingja.loadsirbestpractice.ui.ask;
+package sample.kingja.loadsirbestpractice.ui.follower;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -14,7 +14,6 @@ import sample.kingja.loadsirbestpractice.R;
 import sample.kingja.loadsirbestpractice.app.Constants;
 import sample.kingja.loadsirbestpractice.base.BaseRvAdaper;
 import sample.kingja.loadsirbestpractice.model.entiy.Follower;
-import sample.kingja.loadsirbestpractice.model.entiy.Question;
 
 /**
  * Description：TODO

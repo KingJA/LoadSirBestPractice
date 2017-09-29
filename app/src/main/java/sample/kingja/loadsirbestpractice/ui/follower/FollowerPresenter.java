@@ -1,11 +1,14 @@
-package sample.kingja.loadsirbestpractice.ui.ask;
+package sample.kingja.loadsirbestpractice.ui.follower;
 
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import sample.kingja.loadsirbestpractice.model.Api;
 import sample.kingja.loadsirbestpractice.model.ResultObserver;
 import sample.kingja.loadsirbestpractice.model.entiy.Follower;
@@ -28,7 +31,10 @@ public class FollowerPresenter implements FollowerContract.Presenter {
     @Override
     public void getFollowers(String user) {
         view.showLoading();
-        api.getFollower(user).subscribe(new ResultObserver<List<Follower>>(view) {
+        api.getFollower(user)
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ResultObserver<List<Follower>>(view) {
             @Override
             protected void onSuccess(List<Follower> followers) {
                 view.showFollowers(followers);

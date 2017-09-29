@@ -1,5 +1,6 @@
 package sample.kingja.loadsirbestpractice.base;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -15,6 +16,10 @@ import butterknife.ButterKnife;
 import sample.kingja.loadsirbestpractice.R;
 import sample.kingja.loadsirbestpractice.injector.component.AppComponent;
 
+import static sample.kingja.loadsirbestpractice.R.id.fl_content;
+import static sample.kingja.loadsirbestpractice.R.id.ll_title_back;
+import static sample.kingja.loadsirbestpractice.R.id.tv_title_title;
+
 /**
  * Description：TODO
  * Create Time：2017/3/20 14:17
@@ -22,16 +27,11 @@ import sample.kingja.loadsirbestpractice.injector.component.AppComponent;
  * Email:kingjavip@gmail.com
  */
 public abstract class BaseTitleActivity extends BaseActivity implements Callback.OnReloadListener {
-//    @BindView(R.id.ll_title_back)
-//    LinearLayout llTitleBack;
-//    @BindView(R.id.tv_title_title)
-//    TextView tvTitleTitle;
-//    @BindView(R.id.fl_content)
-//    FrameLayout flContent;
     protected LoadService loadService;
-    private FrameLayout fl_content;
-    private TextView tv_title_title;
-    private LinearLayout ll_title_back;
+    private View rootView;
+    private FrameLayout flContent;
+    private TextView tvTitleTitle;
+    private LinearLayout llTitleBack;
 
     @Override
     public void initVariable() {
@@ -39,34 +39,33 @@ public abstract class BaseTitleActivity extends BaseActivity implements Callback
     }
 
     @Override
-    public int getContentId() {
-        View rootView = View.inflate(this, R.layout.activity_title, null);
-        fl_content = (FrameLayout) rootView.findViewById(R.id.fl_content);
-        tv_title_title = (TextView) rootView.findViewById(R.id.tv_title_title);
-        ll_title_back = (LinearLayout) rootView.findViewById(R.id.ll_title_back);
-        tv_title_title.setText(getContentTitle() == null ? "" : getContentTitle());
-        ll_title_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        return R.layout.activity_title;
+    public View getContentId() {
+        rootView = View.inflate(this, R.layout.activity_title, null);
+        flContent = (FrameLayout) rootView.findViewById(R.id.fl_content);
+        tvTitleTitle = (TextView) rootView.findViewById(R.id.tv_title_title);
+        llTitleBack = (LinearLayout) rootView.findViewById(R.id.ll_title_back);
+        return rootView;
     }
 
     protected abstract void initComponent(AppComponent appComponent);
 
     @Override
     protected void initViewAndListener() {
+        tvTitleTitle.setText(getContentTitle() == null ? "" : getContentTitle());
+        llTitleBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         View content = View.inflate(this, getContentView(), null);
         if (content != null) {
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                     FrameLayout.LayoutParams.MATCH_PARENT);
-            fl_content.addView(content, params);
-            loadService = LoadSir.getDefault().register(content, this);
-
+            flContent.addView(content, params);
+            loadService = LoadSir.getDefault().register(this, this);
         }
+//        ButterKnife.bind(rootView);
         initView();
     }
 

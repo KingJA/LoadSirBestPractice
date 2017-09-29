@@ -1,4 +1,4 @@
-package sample.kingja.loadsirbestpractice.ui.ask;
+package sample.kingja.loadsirbestpractice.ui.follower;
 
 
 import dagger.Component;

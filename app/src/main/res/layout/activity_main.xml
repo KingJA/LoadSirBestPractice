@@ -7,8 +7,10 @@
     tools:context="sample.kingja.loadsirbestpractice.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:text="Hello World!"/>
 
 </LinearLayout>

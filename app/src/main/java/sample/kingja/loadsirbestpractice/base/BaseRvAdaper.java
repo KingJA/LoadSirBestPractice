@@ -81,7 +81,7 @@ public abstract class BaseRvAdaper<T> extends RecyclerView.Adapter<BaseRvAdaper.
 
     @Override
     public int getItemCount() {
-        return list.size();
+        return 10;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

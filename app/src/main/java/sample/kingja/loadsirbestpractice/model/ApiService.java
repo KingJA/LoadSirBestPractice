@@ -19,7 +19,6 @@ import sample.kingja.loadsirbestpractice.model.entiy.HttpResult;
  */
 public interface ApiService {
 
-    @FormUrlEncoded
     @GET("/users/{user}/followers")
     Observable<HttpResult<List<Follower>>> getFollower(@Path("user") String user);
 

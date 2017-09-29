@@ -4,8 +4,8 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
-import butterknife.ButterKnife;
 import sample.kingja.loadsirbestpractice.app.App;
 import sample.kingja.loadsirbestpractice.injector.component.AppComponent;
 import sample.kingja.loadsirbestpractice.injector.module.ActivityModule;
@@ -28,11 +28,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         initCommon();
         initVariable();
         setContentView(getContentId());
-        ButterKnife.bind(this);
         initComponent(App.getContext().getAppComponent());
         initViewAndListener();
         initNet();
         AppManager.getAppManager().addActivity(this);
+
     }
 
 
@@ -58,7 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initVariable();
 
     /*获取界面Id*/
-    public abstract int getContentId();
+    public abstract View getContentId();
 
     /*依赖注入*/
     protected abstract void initComponent(AppComponent appComponent);

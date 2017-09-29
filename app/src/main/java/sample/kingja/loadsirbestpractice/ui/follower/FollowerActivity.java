@@ -1,10 +1,8 @@
-package sample.kingja.loadsirbestpractice.ui.ask;
+package sample.kingja.loadsirbestpractice.ui.follower;
 
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +14,8 @@ import butterknife.ButterKnife;
 import sample.kingja.loadsirbestpractice.R;
 import sample.kingja.loadsirbestpractice.base.BaseTitleActivity;
 import sample.kingja.loadsirbestpractice.injector.component.AppComponent;
+import sample.kingja.loadsirbestpractice.loadsir.callback.ErrorCallback;
+import sample.kingja.loadsirbestpractice.loadsir.callback.LoadingCallback;
 import sample.kingja.loadsirbestpractice.model.entiy.Follower;
 import sample.kingja.loadsirbestpractice.util.SharedPreferencesManager;
 
@@ -31,12 +31,10 @@ public class FollowerActivity extends BaseTitleActivity implements FollowerContr
     FollowerPresenter mFollowerPresenter;
     @Inject
     SharedPreferencesManager mSpManager;
-//    @BindView(R.id.srl)
-//    SwipeRefreshLayout swipeRefreshLayout;
-//    @BindView(R.id.rv)
-//    RecyclerView recyclerView;
+    @BindView(R.id.rv)
+    RecyclerView recyclerView;
 
-    private List<Follower> questions = new ArrayList<>();
+    private List<Follower> followers = new ArrayList<>();
     private FollowerAdapter mAnswerAdapter;
 
     @Override
@@ -59,9 +57,10 @@ public class FollowerActivity extends BaseTitleActivity implements FollowerContr
 
     @Override
     protected void initView() {
+//        ButterKnife.bind(this);
         mFollowerPresenter.attachView(this);
-//        swipeRefreshLayout.setOnRefreshListener(this);
-//        mAnswerAdapter = new FollowerAdapter(this, questions);
+//        loadService.showSuccess();
+        mAnswerAdapter = new FollowerAdapter(this, followers);
 //        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setHasFixedSize(true);
 //        recyclerView.setAdapter(mAnswerAdapter);
@@ -69,23 +68,28 @@ public class FollowerActivity extends BaseTitleActivity implements FollowerContr
 
     @Override
     protected void initNet() {
-//        mFollowerPresenter.getFollowers("KingJA");
+        mFollowerPresenter.getFollowers("KingJA");
     }
 
     @Override
     public void showFollowers(List<Follower> followers) {
-//        mAnswerAdapter.setData(questions);
+        mAnswerAdapter.setData(followers);
     }
 
 
     @Override
     public void showLoading() {
-//        swipeRefreshLayout.setRefreshing(true);
+        loadService.showCallback(LoadingCallback.class);
     }
 
     @Override
     public void hideLoading() {
-//        swipeRefreshLayout.setRefreshing(false);
+        loadService.showSuccess();
+    }
+
+    @Override
+    public void showError() {
+        loadService.showCallback(ErrorCallback.class);
     }
 
 

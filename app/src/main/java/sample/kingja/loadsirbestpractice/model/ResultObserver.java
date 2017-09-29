@@ -43,7 +43,7 @@ public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
     public void onError(Throwable e) {
         //记录错误
         Logger.e(e.toString());
-        baseView.hideLoading();
+        baseView.showError();
     }
 
     @Override
