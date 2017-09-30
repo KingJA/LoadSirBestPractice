@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import butterknife.ButterKnife;
 import sample.kingja.loadsirbestpractice.app.App;
 import sample.kingja.loadsirbestpractice.injector.component.AppComponent;
 import sample.kingja.loadsirbestpractice.injector.module.ActivityModule;
@@ -35,6 +36,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void setContentView(View view) {
+        super.setContentView(view);
+        ButterKnife.bind(view);
+    }
 
     /*初始化公共组件*/
     private void initCommon() {

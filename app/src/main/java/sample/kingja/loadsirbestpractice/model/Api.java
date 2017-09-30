@@ -1,20 +1,16 @@
 package sample.kingja.loadsirbestpractice.model;
 
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import sample.kingja.loadsirbestpractice.app.Constants;
-import sample.kingja.loadsirbestpractice.model.entiy.Follower;
-import sample.kingja.loadsirbestpractice.model.entiy.HttpResult;
-import sample.kingja.loadsirbestpractice.model.entiy.Question;
+import sample.kingja.loadsirbestpractice.model.entiy.Repository;
+import sample.kingja.loadsirbestpractice.model.entiy.SearchResult;
 
 /**
  * 项目名称：和ApiService相关联
@@ -46,7 +42,7 @@ public class Api {
 
 
 
-    public Observable<HttpResult<List<Follower>>> getFollower(String user) {
+    public Observable<SearchResult<Repository>> getFollower(String user) {
         return apiService.getFollower(user);
     }
 

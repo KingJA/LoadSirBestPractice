@@ -1,6 +1,7 @@
 package com.kingja.loadsir.core;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -9,6 +10,8 @@ import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.callback.SuccessCallback;
 
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Description:TODO
@@ -91,8 +94,7 @@ public class LoadService<T> {
      * @param transport a interface include modify logic
      * @since 1.2.2
      */
-    public LoadService<T> setCallBack(Class<? extends Callback> callback, Transport transport) {
+    public void setCallBack(Class<? extends Callback> callback, Transport transport) {
         loadLayout.setCallBack(callback, transport);
-        return this;
     }
 }

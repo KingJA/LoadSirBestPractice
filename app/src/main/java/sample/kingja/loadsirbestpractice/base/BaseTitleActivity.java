@@ -1,24 +1,17 @@
 package sample.kingja.loadsirbestpractice.base;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import sample.kingja.loadsirbestpractice.R;
 import sample.kingja.loadsirbestpractice.injector.component.AppComponent;
-
-import static sample.kingja.loadsirbestpractice.R.id.fl_content;
-import static sample.kingja.loadsirbestpractice.R.id.ll_title_back;
-import static sample.kingja.loadsirbestpractice.R.id.tv_title_title;
 
 /**
  * Description：TODO
@@ -28,10 +21,7 @@ import static sample.kingja.loadsirbestpractice.R.id.tv_title_title;
  */
 public abstract class BaseTitleActivity extends BaseActivity implements Callback.OnReloadListener {
     protected LoadService loadService;
-    private View rootView;
-    private FrameLayout flContent;
-    private TextView tvTitleTitle;
-    private LinearLayout llTitleBack;
+    protected View rootView;
 
     @Override
     public void initVariable() {
@@ -41,16 +31,9 @@ public abstract class BaseTitleActivity extends BaseActivity implements Callback
     @Override
     public View getContentId() {
         rootView = View.inflate(this, R.layout.activity_title, null);
-        flContent = (FrameLayout) rootView.findViewById(R.id.fl_content);
-        tvTitleTitle = (TextView) rootView.findViewById(R.id.tv_title_title);
-        llTitleBack = (LinearLayout) rootView.findViewById(R.id.ll_title_back);
-        return rootView;
-    }
-
-    protected abstract void initComponent(AppComponent appComponent);
-
-    @Override
-    protected void initViewAndListener() {
+        FrameLayout flContent = (FrameLayout) rootView.findViewById(R.id.fl_content);
+        TextView tvTitleTitle = (TextView) rootView.findViewById(R.id.tv_title_title);
+        LinearLayout llTitleBack = (LinearLayout) rootView.findViewById(R.id.ll_title_back);
         tvTitleTitle.setText(getContentTitle() == null ? "" : getContentTitle());
         llTitleBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +46,17 @@ public abstract class BaseTitleActivity extends BaseActivity implements Callback
             FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                     FrameLayout.LayoutParams.MATCH_PARENT);
             flContent.addView(content, params);
-            loadService = LoadSir.getDefault().register(this, this);
+            ButterKnife.bind(this,rootView);
+            // register after ButterKnife.bind()
+            loadService = LoadSir.getDefault().register(content, this);
         }
-//        ButterKnife.bind(rootView);
+        return rootView;
+    }
+
+    protected abstract void initComponent(AppComponent appComponent);
+
+    @Override
+    protected void initViewAndListener() {
         initView();
     }
 
@@ -75,11 +66,10 @@ public abstract class BaseTitleActivity extends BaseActivity implements Callback
 
     protected abstract void initView();
 
-
     protected abstract void initNet();
 
     @Override
     public void onReload(View v) {
-        initNet();
+//        loadService.showSuccess();
     }
 }

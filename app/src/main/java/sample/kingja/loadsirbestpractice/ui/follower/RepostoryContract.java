@@ -5,7 +5,7 @@ import java.util.List;
 
 import sample.kingja.loadsirbestpractice.base.BasePresenter;
 import sample.kingja.loadsirbestpractice.base.BaseView;
-import sample.kingja.loadsirbestpractice.model.entiy.Follower;
+import sample.kingja.loadsirbestpractice.model.entiy.Repository;
 
 /**
  * Description：TODO
@@ -13,9 +13,9 @@ import sample.kingja.loadsirbestpractice.model.entiy.Follower;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public interface FollowerContract {
+public interface RepostoryContract {
     interface View extends BaseView {
-        void showFollowers(List<Follower> followers);
+        void showRepostories(List<Repository> followers);
     }
 
     interface Presenter extends BasePresenter<View> {

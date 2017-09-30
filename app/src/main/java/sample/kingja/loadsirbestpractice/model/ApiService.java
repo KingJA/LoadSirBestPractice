@@ -1,14 +1,11 @@
 package sample.kingja.loadsirbestpractice.model;
 
 
-import java.util.List;
-
 import io.reactivex.Observable;
-import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
-import sample.kingja.loadsirbestpractice.model.entiy.Follower;
-import sample.kingja.loadsirbestpractice.model.entiy.HttpResult;
+import retrofit2.http.Query;
+import sample.kingja.loadsirbestpractice.model.entiy.Repository;
+import sample.kingja.loadsirbestpractice.model.entiy.SearchResult;
 
 /**
  * 项目名称：和Api相关联
@@ -19,7 +16,9 @@ import sample.kingja.loadsirbestpractice.model.entiy.HttpResult;
  */
 public interface ApiService {
 
-    @GET("/users/{user}/followers")
-    Observable<HttpResult<List<Follower>>> getFollower(@Path("user") String user);
+//    @GET("/users/{user}/followers")
+//    Observable<HttpResult<List<Follower>>> getFollower(@Path("user") String user);
+    @GET("repositories")
+    Observable<SearchResult<Repository>> getFollower(@Query("q") String q);
 
 }

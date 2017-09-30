@@ -1,11 +1,14 @@
-package sample.kingja.loadsirbestpractice.model;
+package sample.kingja.loadsirbestpractice.model.result;
 
 
 import com.orhanobut.logger.Logger;
 
+import java.util.List;
+
 import io.reactivex.observers.DefaultObserver;
 import sample.kingja.loadsirbestpractice.base.BaseView;
 import sample.kingja.loadsirbestpractice.model.entiy.HttpResult;
+import sample.kingja.loadsirbestpractice.model.entiy.SearchResult;
 import sample.kingja.loadsirbestpractice.util.ToastUtil;
 
 /**
@@ -14,10 +17,10 @@ import sample.kingja.loadsirbestpractice.util.ToastUtil;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
+public abstract class SearchResultObserver<T> extends DefaultObserver<SearchResult<T>> {
     private BaseView baseView;
 
-    public ResultObserver(BaseView baseView) {
+    public SearchResultObserver(BaseView baseView) {
         this.baseView = baseView;
     }
 
@@ -28,26 +31,28 @@ public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
     }
 
     @Override
-    public void onNext(HttpResult<T> httpResult) {
+    public void onNext(SearchResult httpResult) {
         baseView.hideLoading();
-        if (httpResult.getResultCode() == 0) {
-            onSuccess(httpResult.getResultData());
+        if (httpResult.getItems().size()>0) {
+            onSuccess(httpResult.getItems());
         } else {
-            ToastUtil.showText(httpResult.getResultText());
+            baseView.showEmpty();
         }
     }
 
-    protected abstract void onSuccess(T t);
+    protected abstract void onSuccess(List<T> t);
 
     @Override
     public void onError(Throwable e) {
-        //记录错误
+        //显示错误信息
+        //show error
         Logger.e(e.toString());
         baseView.showError();
     }
 
     @Override
     public void onComplete() {
+
     }
 
 

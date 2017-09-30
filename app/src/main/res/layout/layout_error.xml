@@ -5,7 +5,7 @@
               android:gravity="center"
               android:id="@+id/ll_error"
               android:orientation="vertical"
-    android:background="#333333">
+    android:background="#ffffff">
 
 
     <ImageView

@@ -50,7 +50,7 @@ public class App extends Application {
                 .addCallback(new ErrorCallback())
                 .addCallback(new EmptyCallback())
                 .addCallback(new LoadingCallback())
-                .setDefaultCallback(LoadingCallback.class)
+//                .setDefaultCallback(LoadingCallback.class)
                 .commit();
     }
 

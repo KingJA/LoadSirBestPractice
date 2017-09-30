@@ -14,6 +14,6 @@ import sample.kingja.loadsirbestpractice.injector.component.AppComponent;
  */
 @PerActivity
 @Component(dependencies = AppComponent.class)
-public interface FollowerCompnent {
-    void inject(FollowerActivity activity);
+public interface RepostoryCompnent {
+    void inject(RepostoryActivity activity);
 }

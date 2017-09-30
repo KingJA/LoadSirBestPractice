@@ -13,7 +13,7 @@ import java.util.List;
 import sample.kingja.loadsirbestpractice.R;
 import sample.kingja.loadsirbestpractice.app.Constants;
 import sample.kingja.loadsirbestpractice.base.BaseRvAdaper;
-import sample.kingja.loadsirbestpractice.model.entiy.Follower;
+import sample.kingja.loadsirbestpractice.model.entiy.Repository;
 
 /**
  * Description：TODO
@@ -21,9 +21,9 @@ import sample.kingja.loadsirbestpractice.model.entiy.Follower;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class FollowerAdapter extends BaseRvAdaper<Follower> {
+public class RepostoryAdapter extends BaseRvAdaper<Repository> {
 
-    public FollowerAdapter(Context context, List<Follower> list) {
+    public RepostoryAdapter(Context context, List<Repository> list) {
         super(context, list);
     }
 
@@ -38,19 +38,19 @@ public class FollowerAdapter extends BaseRvAdaper<Follower> {
     }
 
     @Override
-    protected void bindHolder(ViewHolder baseHolder, Follower bean, final int position) {
+    protected void bindHolder(ViewHolder baseHolder, Repository bean, final int position) {
         final PersonManagerViewHolder holder = (PersonManagerViewHolder) baseHolder;
-//        holder.tv_title.setText(bean.getTitle());
+        holder.tv_user.setText(bean.getOwner().getLogin());
+        holder.tv_repostory.setText(bean.getFull_name());
+        setQuestionImg(holder.iv_avator, bean.getOwner().getAvatar_url());
     }
 
     private void setQuestionImg(ImageView iv_img, String imgUrls) {
         if (TextUtils.isEmpty(imgUrls)) {
             return;
         }
-        String[] imgArr = imgUrls.split("#");
-        iv_img.setVisibility(View.VISIBLE);
         Glide.with(context)
-                .load(Constants.BASE_URL + imgArr[0])
+                .load(imgUrls)
                 .centerCrop()
                 .placeholder(R.drawable.head_default)
                 .crossFade()
@@ -58,11 +58,15 @@ public class FollowerAdapter extends BaseRvAdaper<Follower> {
     }
 
     class PersonManagerViewHolder extends ViewHolder {
-        public TextView tv_title;
+        public TextView tv_user;
+        public TextView tv_repostory;
+        public ImageView iv_avator;
 
         public PersonManagerViewHolder(View itemView) {
             super(itemView);
-//            tv_title = (TextView) itemView.findViewById(R.id.tv_title);
+            tv_user = (TextView) itemView.findViewById(R.id.tv_user);
+            tv_repostory = (TextView) itemView.findViewById(R.id.tv_repostory);
+            iv_avator = (ImageView) itemView.findViewById(R.id.iv_avator);
         }
     }
 }

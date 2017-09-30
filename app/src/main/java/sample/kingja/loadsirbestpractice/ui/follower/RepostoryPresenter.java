@@ -1,6 +1,5 @@
 package sample.kingja.loadsirbestpractice.ui.follower;
 
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
 
 import java.util.List;
@@ -10,8 +9,8 @@ import javax.inject.Inject;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import sample.kingja.loadsirbestpractice.model.Api;
-import sample.kingja.loadsirbestpractice.model.ResultObserver;
-import sample.kingja.loadsirbestpractice.model.entiy.Follower;
+import sample.kingja.loadsirbestpractice.model.entiy.Repository;
+import sample.kingja.loadsirbestpractice.model.result.SearchResultObserver;
 
 /**
  * Description：TODO
@@ -19,12 +18,12 @@ import sample.kingja.loadsirbestpractice.model.entiy.Follower;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class FollowerPresenter implements FollowerContract.Presenter {
+public class RepostoryPresenter implements RepostoryContract.Presenter {
     private Api api;
-    private FollowerContract.View view;
+    private RepostoryContract.View view;
 
     @Inject
-    public FollowerPresenter(Api api) {
+    public RepostoryPresenter(Api api) {
         this.api = api;
     }
 
@@ -32,18 +31,18 @@ public class FollowerPresenter implements FollowerContract.Presenter {
     public void getFollowers(String user) {
         view.showLoading();
         api.getFollower(user)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ResultObserver<List<Follower>>(view) {
-            @Override
-            protected void onSuccess(List<Follower> followers) {
-                view.showFollowers(followers);
-            }
-        });
+                .subscribe(new SearchResultObserver<Repository>(view) {
+                    @Override
+                    protected void onSuccess(List<Repository> repositories) {
+                        view.showRepostories(repositories);
+                    }
+                });
     }
 
     @Override
-    public void attachView(@NonNull FollowerContract.View view) {
+    public void attachView(@NonNull RepostoryContract.View view) {
         this.view = view;
     }
 
