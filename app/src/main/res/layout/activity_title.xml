@@ -7,7 +7,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/red">
+        android:background="@color/black">
 
         <LinearLayout
             android:background="@drawable/sel_t2g"

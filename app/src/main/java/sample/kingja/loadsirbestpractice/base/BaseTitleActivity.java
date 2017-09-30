@@ -19,8 +19,8 @@ import sample.kingja.loadsirbestpractice.injector.component.AppComponent;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public abstract class BaseTitleActivity extends BaseActivity implements Callback.OnReloadListener {
-    protected LoadService loadService;
+public abstract class BaseTitleActivity extends BaseActivity {
+
     protected View rootView;
 
     @Override
@@ -48,7 +48,7 @@ public abstract class BaseTitleActivity extends BaseActivity implements Callback
             flContent.addView(content, params);
             ButterKnife.bind(this,rootView);
             // register after ButterKnife.bind()
-            loadService = LoadSir.getDefault().register(content, this);
+
         }
         return rootView;
     }
@@ -68,8 +68,4 @@ public abstract class BaseTitleActivity extends BaseActivity implements Callback
 
     protected abstract void initNet();
 
-    @Override
-    public void onReload(View v) {
-//        loadService.showSuccess();
-    }
 }

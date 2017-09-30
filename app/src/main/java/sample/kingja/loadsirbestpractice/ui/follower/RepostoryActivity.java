@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.kingja.loadsir.callback.Callback;
+import com.kingja.loadsir.core.LoadService;
+import com.kingja.loadsir.core.LoadSir;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +28,8 @@ import sample.kingja.loadsirbestpractice.loadsir.callback.LoadingCallback;
 import sample.kingja.loadsirbestpractice.model.entiy.Repository;
 import sample.kingja.loadsirbestpractice.util.SharedPreferencesManager;
 
+import static sample.kingja.loadsirbestpractice.R.id.rv;
+
 /**
  * Description：TODO
  * Create Time：2017/3/21 10:46
@@ -31,17 +37,18 @@ import sample.kingja.loadsirbestpractice.util.SharedPreferencesManager;
  * Email:kingjavip@gmail.com
  */
 public class RepostoryActivity extends BaseTitleActivity implements RepostoryContract.View, SwipeRefreshLayout
-        .OnRefreshListener {
+        .OnRefreshListener, Callback.OnReloadListener {
     @Inject
     RepostoryPresenter mRepostoryPresenter;
     @Inject
     SharedPreferencesManager mSpManager;
-    @BindView(R.id.rv)
+    @BindView(rv)
     RecyclerView recyclerView;
     @BindView(R.id.et_keyword)
     EditText mEtKeyword;
     @BindView(R.id.iv_search)
     ImageView mIvSearch;
+    protected LoadService loadService;
 
     private List<Repository> repositories = new ArrayList<>();
     private RepostoryAdapter mRepostoryAdapter;
@@ -66,6 +73,7 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
 
     @Override
     protected void initView() {
+        loadService = LoadSir.getDefault().register(recyclerView, this);
         mRepostoryPresenter.attachView(this);
         mRepostoryAdapter = new RepostoryAdapter(this, repositories);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -74,12 +82,16 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
         mIvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String keyword = mEtKeyword.getText().toString().trim();
-                if (!TextUtils.isEmpty(keyword)) {
-                    mRepostoryPresenter.getFollowers(keyword);
-                }
+                doSearch();
             }
         });
+    }
+
+    private void doSearch() {
+        String keyword = mEtKeyword.getText().toString().trim();
+        if (!TextUtils.isEmpty(keyword)) {
+            mRepostoryPresenter.getFollowers(keyword);
+        }
     }
 
     @Override
@@ -120,4 +132,8 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
         initNet();
     }
 
+    @Override
+    public void onReload(View v) {
+        doSearch();
+    }
 }

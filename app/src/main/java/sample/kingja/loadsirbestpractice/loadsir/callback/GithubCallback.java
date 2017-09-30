@@ -15,11 +15,11 @@ import sample.kingja.loadsirbestpractice.R;
  * Email:kingjavip@gmail.com
  */
 
-public class EmptyCallback extends Callback {
+public class GithubCallback extends Callback {
 
     @Override
     protected int onCreateView() {
-        return R.layout.layout_empty;
+        return R.layout.layout_github;
     }
 
     @Override

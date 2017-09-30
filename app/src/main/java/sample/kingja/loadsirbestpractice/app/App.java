@@ -15,6 +15,7 @@ import sample.kingja.loadsirbestpractice.injector.module.AppModule;
 import sample.kingja.loadsirbestpractice.injector.module.SharedPreferencesModule;
 import sample.kingja.loadsirbestpractice.loadsir.callback.EmptyCallback;
 import sample.kingja.loadsirbestpractice.loadsir.callback.ErrorCallback;
+import sample.kingja.loadsirbestpractice.loadsir.callback.GithubCallback;
 import sample.kingja.loadsirbestpractice.loadsir.callback.LoadingCallback;
 
 
@@ -50,7 +51,8 @@ public class App extends Application {
                 .addCallback(new ErrorCallback())
                 .addCallback(new EmptyCallback())
                 .addCallback(new LoadingCallback())
-//                .setDefaultCallback(LoadingCallback.class)
+                .addCallback(new GithubCallback())
+                .setDefaultCallback(GithubCallback.class)
                 .commit();
     }
 
