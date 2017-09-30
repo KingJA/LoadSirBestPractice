@@ -13,6 +13,7 @@ import java.util.List;
 import sample.kingja.loadsirbestpractice.R;
 import sample.kingja.loadsirbestpractice.app.Constants;
 import sample.kingja.loadsirbestpractice.base.BaseRvAdaper;
+import sample.kingja.loadsirbestpractice.imgaeloader.ImageLoader;
 import sample.kingja.loadsirbestpractice.model.entiy.Repository;
 
 /**
@@ -42,7 +43,8 @@ public class RepostoryAdapter extends BaseRvAdaper<Repository> {
         final PersonManagerViewHolder holder = (PersonManagerViewHolder) baseHolder;
         holder.tv_user.setText(bean.getOwner().getLogin());
         holder.tv_repostory.setText(bean.getFull_name());
-        setQuestionImg(holder.iv_avator, bean.getOwner().getAvatar_url());
+//        setQuestionImg(holder.iv_avator, bean.getOwner().getAvatar_url());
+        ImageLoader.getDefault().loadImage(context,bean.getOwner().getAvatar_url(),R.drawable.head_default,holder.iv_avator);
     }
 
     private void setQuestionImg(ImageView iv_img, String imgUrls) {

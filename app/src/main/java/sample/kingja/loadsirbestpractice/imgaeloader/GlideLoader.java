@@ -19,7 +19,7 @@ public class GlideLoader implements IImageLoader {
     @Override
     public void loadImage(Context context, String url, int resourceId, ImageView view) {
         Glide.with(context)
-                .load(Constants.BASE_URL + url)
+                .load(url)
                 .centerCrop()
                 .placeholder(resourceId == 0 ? R.drawable.head_default : resourceId)
                 .crossFade()

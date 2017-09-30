@@ -21,7 +21,7 @@ public class ImageLoader implements IImageLoader {
         imageLoader.loadImage(context, url, resourceId, view);
     }
 
-    public static ImageLoader getInstance() {
+    public static ImageLoader getDefault() {
         if (mGlideLoader == null) {
             synchronized (ImageLoader.class) {
                 if (mGlideLoader == null) {
