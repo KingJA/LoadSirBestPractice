@@ -63,7 +63,7 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
 
     @Override
     protected String getContentTitle() {
-        return "Repostory Search";
+        return "Github Repostory Search";
     }
 
     @Override
