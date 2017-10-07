@@ -29,7 +29,6 @@ public class RepostoryPresenter implements RepostoryContract.Presenter {
 
     @Override
     public void getFollowers(String user) {
-        view.showLoading();
         api.getFollower(user)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

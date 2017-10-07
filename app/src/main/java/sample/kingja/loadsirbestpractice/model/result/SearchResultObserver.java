@@ -7,9 +7,7 @@ import java.util.List;
 
 import io.reactivex.observers.DefaultObserver;
 import sample.kingja.loadsirbestpractice.base.BaseView;
-import sample.kingja.loadsirbestpractice.model.entiy.HttpResult;
 import sample.kingja.loadsirbestpractice.model.entiy.SearchResult;
-import sample.kingja.loadsirbestpractice.util.ToastUtil;
 
 /**
  * Description：TODO
@@ -32,7 +30,6 @@ public abstract class SearchResultObserver<T> extends DefaultObserver<SearchResu
 
     @Override
     public void onNext(SearchResult httpResult) {
-        baseView.hideLoading();
         if (httpResult.getItems().size()>0) {
             onSuccess(httpResult.getItems());
         } else {

@@ -29,7 +29,6 @@ public abstract class ResultObserver<T> extends DefaultObserver<HttpResult<T>> {
 
     @Override
     public void onNext(HttpResult<T> httpResult) {
-        baseView.hideLoading();
         if (httpResult.getResultCode() == 0) {
             onSuccess(httpResult.getResultData());
         } else {

@@ -1,10 +1,8 @@
 package sample.kingja.loadsirbestpractice.ui.follower;
 
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,8 +34,7 @@ import static sample.kingja.loadsirbestpractice.R.id.rv;
  * Author:KingJA
  * Email:kingjavip@gmail.com
  */
-public class RepostoryActivity extends BaseTitleActivity implements RepostoryContract.View, SwipeRefreshLayout
-        .OnRefreshListener, Callback.OnReloadListener {
+public class RepostoryActivity extends BaseTitleActivity implements RepostoryContract.View, Callback.OnReloadListener {
     @Inject
     RepostoryPresenter mRepostoryPresenter;
     @Inject
@@ -111,10 +108,6 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
         loadService.showCallback(LoadingCallback.class);
     }
 
-    @Override
-    public void hideLoading() {
-//        loadService.showCallback(LoadingCallback.class);
-    }
 
     @Override
     public void showError() {
@@ -124,12 +117,6 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
     @Override
     public void showEmpty() {
         loadService.showCallback(EmptyCallback.class);
-    }
-
-
-    @Override
-    public void onRefresh() {
-        initNet();
     }
 
     @Override
