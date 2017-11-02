@@ -1,5 +1,6 @@
 package sample.kingja.loadsirbestpractice.ui.follower;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -39,8 +40,11 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
     RepostoryPresenter mRepostoryPresenter;
     @Inject
     SharedPreferencesManager mSpManager;
-    @BindView(rv)
+    @BindView(R.id.rv)
     RecyclerView recyclerView;
+    @BindView(R.id.srl)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     @BindView(R.id.et_keyword)
     EditText mEtKeyword;
     @BindView(R.id.iv_search)
@@ -76,6 +80,12 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(mRepostoryAdapter);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         mIvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
