@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+
 import com.kingja.loadsir.callback.Callback;
 import com.kingja.loadsir.core.LoadService;
 import com.kingja.loadsir.core.LoadSir;
@@ -26,8 +27,7 @@ import sample.kingja.loadsirbestpractice.loadsir.callback.ErrorCallback;
 import sample.kingja.loadsirbestpractice.loadsir.callback.LoadingCallback;
 import sample.kingja.loadsirbestpractice.model.entiy.Repository;
 import sample.kingja.loadsirbestpractice.util.SharedPreferencesManager;
-
-import static sample.kingja.loadsirbestpractice.R.id.rv;
+import sample.kingja.loadsirbestpractice.util.ToastUtil;
 
 /**
  * Description：TODO
@@ -98,6 +98,8 @@ public class RepostoryActivity extends BaseTitleActivity implements RepostoryCon
         String keyword = mEtKeyword.getText().toString().trim();
         if (!TextUtils.isEmpty(keyword)) {
             mRepostoryPresenter.getFollowers(keyword);
+        }else{
+            ToastUtil.showText("please input keyword");
         }
     }
 

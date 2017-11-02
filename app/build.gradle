@@ -25,12 +25,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportVersion"
     //LoadSir
-    compile project(':loadsir')
-
     //RxJava,RxAndroid
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     compile 'io.reactivex.rxjava2:rxjava:2.1.4'
@@ -39,21 +36,18 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.3.0'
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
-
     //Butterknife
     compile 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-
     //Dagger2
     compile 'com.google.dagger:dagger:2.11'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
-
     //leakcanary
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
-
     //Logger
     compile 'com.orhanobut:logger:1.15'
-
     // glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    //loadsir
+    compile 'com.kingja.loadsir:loadsir:1.3.2'
 }
